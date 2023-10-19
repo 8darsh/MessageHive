@@ -20,9 +20,14 @@
 		D22934D72AE03B62007FC1C1 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22934D62AE03B62007FC1C1 /* NewConversationViewController.swift */; };
 		D22934D92AE03B6C007FC1C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22934D82AE03B6C007FC1C1 /* ProfileViewController.swift */; };
 		D22934DC2AE04AB0007FC1C1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22934DB2AE04AB0007FC1C1 /* Extensions.swift */; };
+		D26FE1902AE1643700F27BA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D26FE18F2AE1643700F27BA9 /* GoogleService-Info.plist */; };
+		EC8509719EBC8DB1D9149E0B /* Pods_MessageHive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4412B663C3D9966BA6806363 /* Pods_MessageHive.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230BE3696265EED062076E74 /* Pods-MessageHive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageHive.release.xcconfig"; path = "Target Support Files/Pods-MessageHive/Pods-MessageHive.release.xcconfig"; sourceTree = "<group>"; };
+		4412B663C3D9966BA6806363 /* Pods_MessageHive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageHive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC43A9EB5FD5200AEC66055D /* Pods-MessageHive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageHive.debug.xcconfig"; path = "Target Support Files/Pods-MessageHive/Pods-MessageHive.debug.xcconfig"; sourceTree = "<group>"; };
 		D22934B12AE0378A007FC1C1 /* MessageHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22934B42AE0378A007FC1C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D22934B62AE0378A007FC1C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +43,7 @@
 		D22934D62AE03B62007FC1C1 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		D22934D82AE03B6C007FC1C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D22934DB2AE04AB0007FC1C1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D26FE18F2AE1643700F27BA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8509719EBC8DB1D9149E0B /* Pods_MessageHive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25D926710571E269FBA2427C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC43A9EB5FD5200AEC66055D /* Pods-MessageHive.debug.xcconfig */,
+				230BE3696265EED062076E74 /* Pods-MessageHive.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5FBEFCA425BDDCA3B21F1C32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4412B663C3D9966BA6806363 /* Pods_MessageHive.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D22934A82AE03789007FC1C1 = {
 			isa = PBXGroup;
 			children = (
 				D22934B32AE0378A007FC1C1 /* MessageHive */,
 				D22934B22AE0378A007FC1C1 /* Products */,
+				25D926710571E269FBA2427C /* Pods */,
+				5FBEFCA425BDDCA3B21F1C32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +96,7 @@
 		D22934B32AE0378A007FC1C1 /* MessageHive */ = {
 			isa = PBXGroup;
 			children = (
+				D26FE18F2AE1643700F27BA9 /* GoogleService-Info.plist */,
 				D22934C82AE039F7007FC1C1 /* Resources */,
 				D22934C92AE03A1E007FC1C1 /* Models */,
 				D22934CA2AE03A26007FC1C1 /* ViewModels */,
@@ -151,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22934C52AE0378B007FC1C1 /* Build configuration list for PBXNativeTarget "MessageHive" */;
 			buildPhases = (
+				81204866432CBB04EED84820 /* [CP] Check Pods Manifest.lock */,
 				D22934AD2AE03789007FC1C1 /* Sources */,
 				D22934AE2AE03789007FC1C1 /* Frameworks */,
 				D22934AF2AE03789007FC1C1 /* Resources */,
+				ED90AAC1BFB12E66B84FDDF9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D26FE1902AE1643700F27BA9 /* GoogleService-Info.plist in Resources */,
 				D22934C12AE0378B007FC1C1 /* LaunchScreen.storyboard in Resources */,
 				D22934BE2AE0378B007FC1C1 /* Assets.xcassets in Resources */,
 				D22934BC2AE0378A007FC1C1 /* Main.storyboard in Resources */,
@@ -209,6 +239,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81204866432CBB04EED84820 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MessageHive-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED90AAC1BFB12E66B84FDDF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MessageHive/Pods-MessageHive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MessageHive/Pods-MessageHive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MessageHive/Pods-MessageHive-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D22934AD2AE03789007FC1C1 /* Sources */ = {
@@ -371,12 +443,14 @@
 		};
 		D22934C62AE0378B007FC1C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC43A9EB5FD5200AEC66055D /* Pods-MessageHive.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9P2DNH3C2B;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessageHive/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -402,12 +476,14 @@
 		};
 		D22934C72AE0378B007FC1C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 230BE3696265EED062076E74 /* Pods-MessageHive.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9P2DNH3C2B;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessageHive/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
