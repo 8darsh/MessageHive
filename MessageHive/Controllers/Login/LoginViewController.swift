@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 class LoginViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
@@ -63,6 +65,8 @@ class LoginViewController: UIViewController {
         btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         return btn
     }()
+    
+    private let googleLogInButton = GIDSignInButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +81,11 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        scrollView.addSubview(googleLogInButton)
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        googleLogInButton.addTarget(self, action: #selector(googleLogInButtonTapped), for: .touchUpInside)
+        
         
         emailField.delegate = self
         passwordField.delegate = self
@@ -101,6 +108,10 @@ class LoginViewController: UIViewController {
                                  height: 47)
         loginButton.frame = CGRect(x: 30,
                                   y: passwordField.bottom+10,
+                                  width: scrollView.width-60,
+                                 height: 47)
+        googleLogInButton.frame = CGRect(x: 30,
+                                  y: loginButton.bottom+10,
                                   width: scrollView.width-60,
                                  height: 47)
         
@@ -130,7 +141,58 @@ class LoginViewController: UIViewController {
             print("logged in user \(user)")
             self.navigationController?.dismiss(animated: true)
         }
+        
+        
     }
+    @objc func googleLogInButtonTapped(){
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          
+          guard error == nil else {
+            // ...
+              return
+          }
+            
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            // ...
+              return
+          }
+            guard let email = user.profile?.email,
+                  let firstName = user.profile?.givenName,
+                  let lastName = user.profile?.familyName else{return}
+            
+            DatabaseManager.shared.userExists(with: email) { exists in
+                if !exists{
+                    // insert to database
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                }
+            }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+
+          // ...
+            FirebaseAuth.Auth.auth().signIn(with: credential) { result, error in
+                
+                guard result != nil, error == nil else{
+                    print("failed to log in with google")
+                    return
+                }
+                self.navigationController?.dismiss(animated: true)
+            }
+                
+        }
+    }
+    
+    
     
     func alertUserLoginError(){
         let alert = UIAlertController(title: "Woops", message: "Please enter all info to login.", preferredStyle: .alert)
