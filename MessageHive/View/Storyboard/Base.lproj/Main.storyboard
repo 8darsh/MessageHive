@@ -91,7 +91,7 @@
         <scene sceneID="IFE-3B-Xl3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lzL-SE-gNV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" id="Zo0-jz-4ub"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" selectedImage="message.fill" id="Zo0-jz-4ub"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jSY-s1-nsA">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
@@ -110,7 +110,7 @@
         <scene sceneID="dNu-dh-8zU">
             <objects>
                 <navigationController id="ynE-kw-bW4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="5pl-bq-YFE"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="5pl-bq-YFE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ppU-dn-1Va">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,6 +125,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="message" catalog="system" width="128" height="116"/>
+        <image name="message.fill" catalog="system" width="128" height="114"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
