@@ -92,6 +92,9 @@ class LoginViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
@@ -183,7 +186,38 @@ class LoginViewController: UIViewController {
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists{
                     // insert to database
-                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                    let ChatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                    DatabaseManager.shared.insertUser(with: ChatUser) { success in
+                        if success{
+                            
+                            if user.profile!.hasImage{
+                                guard let url = user.profile?.imageURL(withDimension: 200) else{
+                                    return
+                                }
+                                URLSession.shared.dataTask(with: url) { data, _, _ in
+                                    guard let data else {
+                                        return
+                                    }
+                                    let fileName = ChatUser.profilePictureFileName
+                                    
+                                    StorageManager.shared.uploadProfilePicture(with: data, filename: fileName) { result in
+                                        switch result{
+                                            
+                                        case .success(let downloadUrl):
+                                            UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                            print("\(downloadUrl)")
+                                        case .failure(let error):
+                                            print("Storage manager error: \(error)")
+                                        }
+                                    }
+                                }.resume()
+                            
+                            
+                            }
+
+
+                        }
+                    }
                 }
             }
 
@@ -234,4 +268,6 @@ extension LoginViewController: UITextFieldDelegate{
         
         return true
     }
+    
+    
 }

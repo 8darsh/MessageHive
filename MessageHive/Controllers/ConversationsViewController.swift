@@ -39,12 +39,14 @@ class ConversationsViewController: UIViewController{
         view.addSubview(noConversationLabel)
         setupTableView()
         fetchConversation()
+        validateAuth()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         validateAuth()
@@ -53,7 +55,7 @@ class ConversationsViewController: UIViewController{
     @objc func didTapCompose(){
         let vc = NewConversationViewController()
         let navVc = UINavigationController(rootViewController: vc)
-        present(navVc, animated: true)
+        present(navVc, animated: false)
     }
     
     
@@ -63,7 +65,7 @@ class ConversationsViewController: UIViewController{
             let vc = LoginViewController()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
-            present(nav,animated:false)
+            present(nav,animated:true)
         }
     }
     

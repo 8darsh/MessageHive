@@ -104,8 +104,6 @@ class RegisterViewController: UIViewController {
         title = "Register User"
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
-        
         //add subview
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
@@ -197,10 +195,30 @@ class RegisterViewController: UIViewController {
                     print("Error cureting user")
                     return
                 }
-                DatabaseManager.shared.insertUser(with: ChatAppUser(
-                    firstName: firstName,
-                    lastName: lastName,
-                    emailAddress: email))
+                let ChatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                DatabaseManager.shared.insertUser(with: ChatUser) { success in
+                    if success{
+                        //upload image
+                        guard let image = self.imageView.image,
+                              let data = image.pngData() else{
+                            
+                            return
+                        }
+                        let fileName = ChatUser.profilePictureFileName
+                        
+                        StorageManager.shared.uploadProfilePicture(with: data, filename: fileName) { result in
+                            switch result{
+                                
+                            case .success(let downloadUrl):
+                                UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                print("\(downloadUrl)")
+                            case .failure(let error):
+                                print("Storage manager error: \(error)")
+                            }
+                        }
+                    }
+                }
+                
                 self.navigationController?.dismiss(animated: true)
             }
         }
