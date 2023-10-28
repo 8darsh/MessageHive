@@ -148,6 +148,7 @@ class LoginViewController: UIViewController {
             }
             
             let user = result.user
+            UserDefaults.standard.set(email, forKey: "email")
             print("logged in user \(user)")
             self.navigationController?.dismiss(animated: true)
         }
@@ -182,6 +183,7 @@ class LoginViewController: UIViewController {
             guard let email = user.profile?.email,
                   let firstName = user.profile?.givenName,
                   let lastName = user.profile?.familyName else{return}
+            UserDefaults.standard.set(email, forKey: "email")
             
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists{
